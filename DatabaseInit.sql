@@ -2,6 +2,10 @@ CREATE DATABASE IF NOT EXISTS FacialRecognitionApp;
 USE FacialRecognitionApp;
 SHOW databases;
 
+DROP TABLE IF EXISTS ModelUserClassification;
+DROP TABLE IF EXISTS AppUser;
+DROP TABLE IF EXISTS Model;
+
 CREATE TABLE IF NOT EXISTS Model (
 	ModelId int not null auto_increment,
     PRIMARY KEY (ModelId)
@@ -9,6 +13,7 @@ CREATE TABLE IF NOT EXISTS Model (
 
 CREATE TABLE IF NOT EXISTS AppUser (
 	UserId int not null auto_increment,
+    HomeUserId int,
     UserName varchar(64) not null unique,
     FirstName varchar(64) not null,
     LastName varchar(64) not null,
@@ -30,3 +35,5 @@ CREATE TABLE IF NOT EXISTS ModelUserClassification (
     foreign key(UserId) references AppUser(UserId),
     foreign key(ModelId) references Model(ModelId)
 );
+
+select * from AppUser;
